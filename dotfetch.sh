@@ -10,7 +10,7 @@ ip=$(hostname -I | awk '{print $1}')
 kernal=$(uname -r)
 
 date=$(date "+%A %d %B %Y, %T")
-disk=$(df -h | awk '$NF=="/"{printf "%d/%dGB (%s)\n", $3,$2,$5}')
+disk=$(df -T -h | awk '$NF=="/"{printf "%d/%dGB (%s)\n", $3,$2,$5}')
 memory=$(free -m | awk 'NR==2{printf "%s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }')
 
 getUPTIME=$(uptime -p)
@@ -25,6 +25,6 @@ echo -e "${R} /      ==      \ ${NC}  ${P}\e[1mos:\e[0m${NC} $os"
 echo -e "${R}|     /@@@@\     |${NC}  ${P}\e[1mkernal:\e[0m${NC} $kernal"
 echo -e "${R}|     @@@@@@     |${NC}  ${P}\e[1mdate:\e[0m${NC} $date"
 echo -e "${R}|     \@@@@/     |${NC}  ${P}\e[1muptime:\e[0m${NC} $uptime"
-echo -e "${R} \      ==      / ${NC}  ${P}\e[1mdisk(/home):\e[0m${NC} $disk"
+echo -e "${R} \      ==      / ${NC}  ${P}\e[1mdisk:\e[0m${NC} $disk"
 echo -e "${R}  \`._        _.'${NC}    ${P}\e[1mmemory:\e[0m${NC} $memory"
 echo -e "${R}     \`-....-'   ${NC}    ${P}\e[1mip:\e[0m${NC} $ip"
